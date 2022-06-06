@@ -1,5 +1,5 @@
-const { User } = require("../models/User");
-const AuthenticationController = require("./AuthenticationController");
+const { User } = require("../app/models/User");
+const AuthenticationController = require("../app/controllers/AuthenticationController");
 
 describe("AuthenticationController", () => {
   describe("#handleLogin", () => {
