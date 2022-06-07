@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const ApplicationController = require('./ApplicationController')
 
 describe('ApplicationController', () => {
@@ -48,7 +49,7 @@ describe('ApplicationController', () => {
 
   describe('#getOffsetFromRequest', () => {
     it('Should return an offset', async () => {
-      const applicationController = new ApplicationController();
+      const applicationController = new ApplicationController()
       const req = {
         query: {
           page: 1,

@@ -1,4 +1,5 @@
-const {Car} = require('../models/car')
+/* eslint-disable no-undef */
+const { Car } = require('../models/car')
 const CarController = require('./CarController')
 
 describe('CarController', () => {
@@ -80,12 +81,12 @@ describe('CarController', () => {
       const res = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn().mockReturnThis()
-      };
+      }
 
       await carController.handleCreateCar(req, res)
 
       expect(res.status).toHaveBeenCalledWith(201)
-    });
+    })
   })
 
   describe('#handleRentCar', () => {
@@ -100,7 +101,7 @@ describe('CarController', () => {
 
       const req = {
         params: {
-          id: 1,
+          id: 1
         },
         body: {
           rentStartedAt: '2020-01-01',
