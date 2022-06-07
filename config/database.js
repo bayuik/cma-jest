@@ -9,7 +9,7 @@ module.exports = {
     port: DB_PORT,
     dialect: 'postgres',
     ssl: {
-      rejectUnauthorized: false,
+      rejectUnauthorized: false
     },
   },
   test: {
