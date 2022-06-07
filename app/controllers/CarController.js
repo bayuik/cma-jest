@@ -1,34 +1,34 @@
-const { Op } = require("sequelize");
-const ApplicationController = require("./ApplicationController");
+const { Op } = require('sequelize')
+const ApplicationController = require('./ApplicationController')
 
 class CarController extends ApplicationController {
   constructor({ carModel, userCarModel, dayjs }) {
-    super();
-    this.carModel = carModel;
-    this.userCarModel = userCarModel;
-    this.dayjs = dayjs;
+    super()
+    this.carModel = carModel
+    this.userCarModel = userCarModel
+    this.dayjs = dayjs
   }
 
   handleListCars = async (req, res) => {
-    const offset = this.getOffsetFromRequest(req);
-    const limit = req.query.pageSize;
-    const query = this.getListQueryFromRequest(req);
-    const cars = await this.carModel.findAll(query);
-    const carCount = await this.carModel.count({ where: query.where, include: query.include, });
-    const pagination = this.buildPaginationObject(req, carCount);
+    const offset = this.getOffsetFromRequest(req)
+    const limit = req.query.pageSize
+    const query = this.getListQueryFromRequest(req)
+    const cars = await this.carModel.findAll(query)
+    const carCount = await this.carModel.count({ where: query.where, include: query.include })
+    const pagination = this.buildPaginationObject(req, carCount)
 
     res.status(200).json({
       cars,
       meta: {
-        pagination,
+        pagination
       }
-    });
+    })
   }
 
   handleGetCar = async (req, res) => {
-    const car = await this.getCarFromRequest(req); 
+    const car = await this.getCarFromRequest(req) 
 
-    res.status(200).json(car);
+    res.status(200).json(car)
   }
 
   handleCreateCar = async (req, res) => {
@@ -55,9 +55,9 @@ class CarController extends ApplicationController {
       res.status(422).json({
         error: {
           name: err.name,
-          message: err.message,
+          message: err.message
         }
-      });
+      })
     }
   }
 
@@ -66,7 +66,7 @@ class CarController extends ApplicationController {
       let { rentStartedAt, rentEndedAt } = req.body;
       const car = await this.getCarFromRequest(req)
 
-      if (!rentEndedAt) rentEndedAt = this.dayjs(rentStartedAt).add(1, "day");
+      if (!rentEndedAt) rentEndedAt = this.dayjs(rentStartedAt).add(1, 'day');
 
       const activeRent = await this.userCarModel.findOne({
         where: {
@@ -149,7 +149,7 @@ class CarController extends ApplicationController {
     const where = {};
     const include = {
       model: this.userCarModel,
-      as: "userCar",
+      as: 'userCar',
       required: false,
     }
 
