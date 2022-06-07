@@ -34,9 +34,7 @@ class AuthenticationController extends ApplicationController {
 
         req.user = payload
         next()
-      }
-
-      catch (err) {
+      } catch (err) {
         res.status(401).json({
           error: {
             name: err.name,
@@ -76,9 +74,7 @@ class AuthenticationController extends ApplicationController {
       res.status(201).json({
         accessToken
       })
-    }
-
-    catch (err) {
+    } catch (err) {
       next(err)
     }
   }
@@ -91,6 +87,7 @@ class AuthenticationController extends ApplicationController {
       const existingUser = await this.userModel.findOne({ where: { email } })
 
       if (!existingUser) {
+        // eslint-disable-next-line no-undef
         const err = new EmailAlreadyTakenError(email)
         res.status(422).json(err)
         return
@@ -112,9 +109,7 @@ class AuthenticationController extends ApplicationController {
       res.status(201).json({
         accessToken
       })
-    }
-
-    catch (err) {
+    } catch (err) {
       next(err)
     }
   }
