@@ -1,15 +1,15 @@
-const { NotFoundError } = require("../errors")
+const { NotFoundError } = require('../errors')
 
 class ApplicationController {
   handleGetRoot = (req, res) => {
     res.status(200).json({
-      status: "OK",
-      message: "BCR API is up and running!"
+      status: 'OK',
+      message: 'BCR API is up and running!'
     })
   }
 
   handleNotFound = (req, res) => {
-    const err = new NotFoundError(req.method, req.url
+    const err = new NotFoundError(req.method, req.url)
 
     res.status(404).json({
       error: {
@@ -29,15 +29,15 @@ class ApplicationController {
         details: err.details || null
       }
     })
-  } 
+  }
 
-  getOffsetFromRequest(req) {
+  getOffsetFromRequest (req) {
     const { page = 1, pageSize = 10 } = req.query
-    const offset = (page - 1) * pageSize;
+    const offset = (page - 1) * pageSize
     return offset
   }
 
-  buildPaginationObject(req, count) {
+  buildPaginationObject (req, count) {
     const { page = 1, pageSize = 10 } = req.query
     const pageCount = Math.ceil(count / pageSize)
     return {
