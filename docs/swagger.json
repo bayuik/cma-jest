@@ -2,12 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "BCR API",
-    "version": "1.0",
-    "contact": {
-      "name": "Fikri Rahmat Nurhidayat",
-      "url": "https://github.com/fnurhidayat",
-      "email": "fnurhidayat@binar.co.id"
-    }
+    "version": "1.0"
   },
   "tags": [
     {
